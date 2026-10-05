@@ -1,0 +1,778 @@
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  CheckCircle2,
+  Clock3,
+  Globe2,
+  Menu,
+  MessageCircle,
+  ShieldCheck,
+  Star,
+  X,
+  Zap,
+  Linkedin,
+  Instagram,
+  Youtube,
+  Music2,
+  Mail,
+  Quote,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Blueprint, Brand, EMAIL, WHATSAPP, Heading, Section, navLinks } from "./shared";
+import { industries, services, steps, projects, testimonials, plans, faqs } from "./data";
+import { Mockup } from "./mockup";
+import heroImage from "@/assets/automation-grid.jpg";
+
+function Header() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 20);
+    fn();
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
+  return (
+    <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+      <div className="content-width header-row">
+        <Brand />
+        <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
+          {navLinks.map(([label, id]) => (
+            <a key={id} href={`#${id}`}>
+              {label}
+            </a>
+          ))}
+        </nav>
+        <div className="hidden lg:block">
+          <Blueprint>Get Free Blueprint</Blueprint>
+        </div>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-11 w-11 lg:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <X /> : <Menu />}
+        </Button>
+      </div>
+      {open && (
+        <nav className="mobile-menu lg:hidden" aria-label="Mobile navigation">
+          {navLinks.map(([label, id]) => (
+            <a key={id} href={`#${id}`} onClick={() => setOpen(false)}>
+              {label}
+            </a>
+          ))}
+          <Blueprint>Get Free Blueprint</Blueprint>
+        </nav>
+      )}
+    </header>
+  );
+}
+function Hero() {
+  return (
+    <section id="home" className="hero-section">
+      <img
+        className="hero-backdrop"
+        src={heroImage}
+        alt=""
+        width={1920}
+        height={1024}
+        fetchPriority="high"
+      />
+      <div className="hero-shade" />
+      <div className="content-width relative z-10">
+        <div className="hero-copy">
+          <div className="hero-eyebrow">
+            <span className="status-dot" /> YOUR GROWTH. ON AUTOPILOT.
+          </div>
+          <h1>
+            We Build{" "}
+            <span className="text-primary">
+              Automated
+              <br className="hidden sm:block" /> Sales Machines
+            </span>{" "}
+            for Real Estate,
+            <br className="hidden lg:block" /> Home Services & Online Coaches
+          </h1>
+          <p className="hero-description">
+            Stop losing leads. We set up GoHighLevel automation systems that capture, nurture, and
+            convert your leads on autopilot — so you can focus on closing deals.
+          </p>
+          <div className="hero-actions">
+            <Blueprint />
+            <Button asChild variant="outline" className="secondary-cta">
+              <a href="#results">
+                See Our Results <ArrowRight />
+              </a>
+            </Button>
+          </div>
+          <div className="hero-assurances">
+            <span>
+              <CheckCircle2 /> Free 30-minute strategy call
+            </span>
+            <span>
+              <CheckCircle2 /> No obligation
+            </span>
+            <span>
+              <CheckCircle2 /> Live in 14 days
+            </span>
+          </div>
+        </div>
+        <div className="hero-trust">
+          <div className="trust-people">
+            <span>JR</span>
+            <span>SM</span>
+            <span>DK</span>
+            <span>LT</span>
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="text-success text-xs">★★★★★</span>
+              <span className="text-xs font-semibold">4.9/5 client satisfaction</span>
+            </div>
+            <p>
+              Trusted by <strong>50+ businesses</strong> across the US, Canada & Europe
+            </p>
+          </div>
+          <div className="trust-platform">
+            <Zap size={19} />
+            <span>
+              Built on <strong>GoHighLevel</strong>
+            </span>
+            <ShieldCheck size={22} className="text-success" />
+          </div>
+        </div>
+      </div>
+      <div className="hero-bottom content-width">
+        <span>THREE INDUSTRIES. ONE SPECIALIZED PARTNER.</span>
+        <div>
+          {industries.map((i) => (
+            <span key={i.name}>
+              <i.icon size={17} />
+              {i.name}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+function IntroSections() {
+  return (
+    <>
+      <Section className="pain-section">
+        <Heading eyebrow="THE COST OF DOING IT MANUALLY" title="Sound Familiar?" />
+        <div className="grid gap-5 md:grid-cols-3">
+          {industries.map((i) => (
+            <article className={`industry-pain reveal ${i.tone}`} key={i.name}>
+              <span className="icon-tile">
+                <i.icon size={23} />
+              </span>
+              <h3>{i.name}</h3>
+              <ul>
+                {i.pain.map((p) => (
+                  <li key={p}>
+                    <X size={14} />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+        <p className="section-bottom-line reveal">
+          If any of this sounds like you,{" "}
+          <span className="text-primary">we can fix it in 14 days or less.</span>
+        </p>
+      </Section>
+      <Section className="alternate">
+        <Heading eyebrow="LESS BUSYWORK. MORE BUSINESS." title="What We Automate For You" />
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((s, i) => (
+            <article className="service-card reveal" key={s.title}>
+              <div className="flex justify-between">
+                <span className="icon-tile">
+                  <s.icon size={23} />
+                </span>
+                <span className="card-number">0{i + 1}</span>
+              </div>
+              <h3>{s.title}</h3>
+              <p>{s.description}</p>
+            </article>
+          ))}
+        </div>
+        <div className="center-cta">
+          <Blueprint />
+        </div>
+      </Section>
+      <Section id="how-it-works">
+        <Heading eyebrow="FROM CHAOS TO CONNECTED" title="How It Works — 3 Simple Steps" />
+        <div className="steps-grid">
+          {steps.map((s, i) => (
+            <article className="step reveal" key={s.title}>
+              <div className="step-top">
+                <span className="step-number">0{i + 1}</span>
+                <s.icon size={24} />
+              </div>
+              <h3>{s.title}</h3>
+              <p>{s.description}</p>
+            </article>
+          ))}
+        </div>
+        <div className="center-cta">
+          <p className="mb-5 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+            <Clock3 size={16} className="text-success" />
+            Most systems are fully live within 14 days.
+          </p>
+          <Blueprint>Get My Free Blueprint</Blueprint>
+        </div>
+      </Section>
+    </>
+  );
+}
+function Results() {
+  return (
+    <Section id="results" className="alternate">
+      <Heading eyebrow="BUILT FOR REAL-WORLD GROWTH" title="Our Work Speaks for Itself" />
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((p) => (
+          <article
+            className={`project-card reveal ${industries[p.industry]?.tone ?? "estate"}`}
+            key={p.title}
+          >
+            <div className="project-preview">
+              <Mockup type={p.type} compact />
+            </div>
+            <div className="project-body">
+              <span className="industry-tag">
+                {p.industry === 2
+                  ? "Online Coach"
+                  : (industries[p.industry]?.name ?? "Real Estate")}
+              </span>
+              <h3>{p.title}</h3>
+              <p>{p.description}</p>
+              <div className="project-result">
+                <strong>{p.metric}</strong>
+                <span>{p.result}</span>
+              </div>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="link" className="h-auto p-0">
+                    View Case Study <ArrowUpRight size={15} />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-h-[85vh] overflow-y-auto">
+                  <DialogTitle className="pr-5 leading-relaxed">{p.title}</DialogTitle>
+                  <DialogDescription>
+                    {industries[p.industry]?.name ?? "Real Estate"} • GoHighLevel automation
+                  </DialogDescription>
+                  <Mockup type={p.type} compact />
+                  <p className="text-sm leading-relaxed text-muted-foreground">{p.description}</p>
+                  <div className="project-result">
+                    <strong>{p.metric}</strong>
+                    <span>{p.result}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Project summary supplied by CyberWorld Automations. Visual shown is an
+                    illustrative system mockup.
+                  </p>
+                  <Blueprint />
+                </DialogContent>
+              </Dialog>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div className="center-cta">
+        <p className="mb-6 text-sm text-muted-foreground">
+          These are real results from real businesses. Yours could be next.
+        </p>
+        <Blueprint />
+      </div>
+    </Section>
+  );
+}
+function Testimonials() {
+  return (
+    <Section>
+      <Heading eyebrow="GOOD SYSTEMS. HAPPY CLIENTS." title="What Our Clients Say" />
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {testimonials.map((t) => (
+          <article
+            key={t.name}
+            className={`testimonial-card reveal ${industries[t.industry]?.tone ?? "estate"}`}
+          >
+            <div className="flex justify-between">
+              <span className="stars" aria-label="5 out of 5 stars">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Star key={i} size={13} fill="currentColor" />
+                ))}
+              </span>
+              <Quote size={22} className="text-muted-foreground/40" />
+            </div>
+            <blockquote>“{t.quote}”</blockquote>
+            <div className="testimonial-person">
+              <span className="person-avatar">
+                {t.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
+              </span>
+              <div>
+                <strong>{t.name}</strong>
+                <span>{t.role}</span>
+              </div>
+            </div>
+            <span className="industry-tag">{industries[t.industry]?.name ?? "Real Estate"}</span>
+          </article>
+        ))}
+      </div>
+    </Section>
+  );
+}
+function IndustryTabs() {
+  return (
+    <Section id="industries" className="alternate">
+      <Heading
+        eyebrow="NOT GENERALISTS. YOUR SPECIALISTS."
+        title="Tailored Automation for Your Industry"
+      />
+      <Tabs defaultValue="Real Estate">
+        <TabsList className="industry-tabs">
+          {industries.map((i) => (
+            <TabsTrigger key={i.name} value={i.name}>
+              <i.icon size={17} />
+              <span>{i.name}</span>
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        {industries.map((i) => (
+          <TabsContent key={i.name} value={i.name} className="industry-panel">
+            <div className="min-w-0">
+              <span className={`industry-tag ${i.tone}`}>{i.name}</span>
+              <h3>
+                {i.name === "Real Estate"
+                  ? "More conversations. More closings."
+                  : i.name === "Home Services"
+                    ? "More booked jobs. Less busywork."
+                    : "More clients. More time to coach."}
+              </h3>
+              <p>{i.description}</p>
+              <ul>
+                {i.bullets.map((b) => (
+                  <li key={b}>
+                    <CheckCircle2 size={17} />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <Blueprint className="industry-blueprint">Get My Custom {i.name} Blueprint</Blueprint>
+            </div>
+            <Mockup
+              type={
+                i.name === "Real Estate"
+                  ? "pipeline"
+                  : i.name === "Home Services"
+                    ? "calendar"
+                    : "funnel"
+              }
+            />
+          </TabsContent>
+        ))}
+      </Tabs>
+    </Section>
+  );
+}
+function Pricing() {
+  return (
+    <Section id="pricing">
+      <Heading eyebrow="INVEST IN YOUR NEXT STAGE OF GROWTH" title="Simple, Transparent Pricing" />
+      <div className="pricing-grid">
+        {plans.map((p, i) => (
+          <article key={p.name} className={`pricing-card reveal ${i === 1 ? "popular" : ""}`}>
+            {i === 1 && (
+              <div className="popular-label">
+                <Zap size={12} /> MOST POPULAR
+              </div>
+            )}
+            <div className="pricing-content">
+              <div className="flex justify-between">
+                <h3>{p.name}</h3>
+                <span className="text-primary">
+                  {i === 0 ? (
+                    <Zap size={20} />
+                  ) : i === 1 ? (
+                    <Star size={20} />
+                  ) : (
+                    <Globe2 size={20} />
+                  )}
+                </span>
+              </div>
+              <div className={`plan-price ${i === 2 ? "custom-price" : ""}`}>{p.price}</div>
+              <p className="plan-note">{p.note}</p>
+              <p className="plan-best">{p.best}</p>
+              <div className="plan-divider" />
+              <ul>
+                {p.features.map((f) => (
+                  <li key={f}>
+                    <Check size={16} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              {i === 2 ? (
+                <Button asChild variant="outline" className="h-12 w-full">
+                  <a href={EMAIL}>
+                    Contact Us
+                    <ArrowUpRight />
+                  </a>
+                </Button>
+              ) : (
+                <Blueprint className="w-full">Get My Blueprint</Blueprint>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+      <p className="pricing-footnote">
+        All plans start with a free Automation Blueprint call.
+        <br className="sm:hidden" /> Not sure which plan? Let's figure it out together.
+      </p>
+      <div className="faq-wrap">
+        <div className="eyebrow justify-center">A LITTLE MORE CLARITY</div>
+        <h3 className="mb-6 text-center text-2xl font-bold">Frequently asked questions</h3>
+        <Accordion type="single" collapsible>
+          {faqs.map(([q, a], i) => (
+            <AccordionItem key={q} value={`faq-${i}`}>
+              <AccordionTrigger className="py-5 text-base">{q}</AccordionTrigger>
+              <AccordionContent className="leading-relaxed text-muted-foreground">
+                {a}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </Section>
+  );
+}
+function Stats() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    let frame = 0;
+    const observer = new IntersectionObserver(
+      ([e]) => {
+        if (!e?.isIntersecting) return;
+        observer.disconnect();
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          setProgress(1);
+          return;
+        }
+        let start = 0;
+        const tick = (time: number) => {
+          if (!start) start = time;
+          const p = Math.min((time - start) / 1300, 1);
+          setProgress(1 - Math.pow(1 - p, 3));
+          if (p < 1) frame = requestAnimationFrame(tick);
+        };
+        frame = requestAnimationFrame(tick);
+      },
+      { threshold: 0.4 },
+    );
+    observer.observe(node);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+  return (
+    <div ref={ref} className="stats-band">
+      <div className="content-width stats-grid">
+        {[
+          [50, "+", "Businesses Automated"],
+          [3, "", "Industries Served"],
+          [14, "-Day", "Average Delivery"],
+          [4.9, "/5", "Client Satisfaction"],
+        ].map(([n, s, label]) => (
+          <div key={label}>
+            <strong>
+              {Number(n) === 4.9
+                ? (Number(n) * progress).toFixed(1)
+                : Math.round(Number(n) * progress)}
+              <span>{s}</span>
+            </strong>
+            <p>{label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+function Contact() {
+  const [status, setStatus] = useState("");
+  function submit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const body = `Full Name: ${form.get("name")}\nEmail: ${form.get("email")}\nPhone: ${form.get("phone")}\nIndustry: ${form.get("industry")}\n\n${form.get("message")}`;
+    window.location.href = `${EMAIL}?subject=${encodeURIComponent("Automation Blueprint inquiry")}&body=${encodeURIComponent(body)}`;
+    setStatus(
+      "Your message is ready in your email app. Please send it there to complete your inquiry.",
+    );
+  }
+  return (
+    <Section id="contact" className="contact-section">
+      <div className="contact-heading reveal">
+        <div className="eyebrow justify-center">
+          <span /> LET’S BUILD YOUR NEXT CHAPTER
+        </div>
+        <h2>
+          Ready to Stop Losing Leads and
+          <br className="hidden md:block" /> Start Growing{" "}
+          <span className="text-primary">on Autopilot?</span>
+        </h2>
+        <p>
+          Get your free Automation Blueprint today. In 30 minutes, we'll map out exactly what your
+          automated system would look like — and show you where you're leaving money on the table.
+        </p>
+        <Blueprint />
+        <p className="no-pressure">
+          No obligation. No pressure. Just a clear plan you can keep — even if you never hire us.
+        </p>
+      </div>
+      <form onSubmit={submit} className="contact-form">
+        <h3>Prefer to send a message?</h3>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <label>
+            Full Name
+            <input
+              name="name"
+              required
+              autoComplete="name"
+              placeholder="Your full name"
+              maxLength={120}
+            />
+          </label>
+          <label>
+            Email Address
+            <input
+              name="email"
+              required
+              type="email"
+              autoComplete="email"
+              placeholder="you@company.com"
+            />
+          </label>
+          <label>
+            Phone Number
+            <input
+              name="phone"
+              required
+              type="tel"
+              autoComplete="tel"
+              placeholder="+1 (555) 000-0000"
+              pattern={"[\\d\\s\\+\\(\\)\\.\\-]{7,25}"}
+              title="Enter a valid phone number (7–25 characters)"
+            />
+          </label>
+          <label>
+            Industry
+            <select name="industry" required defaultValue="">
+              <option value="" disabled>
+                Select your industry
+              </option>
+              <option>Real Estate</option>
+              <option>Home Services</option>
+              <option>Online Coaching</option>
+              <option>Other</option>
+            </select>
+          </label>
+        </div>
+        <label className="mt-5 block">
+          Message
+          <textarea
+            name="message"
+            required
+            rows={4}
+            placeholder="Tell us about your business and what you'd like to automate…"
+            maxLength={4000}
+          />
+        </label>
+        <Button type="submit" className="blueprint mt-5 w-full">
+          Send Us a Message
+          <SendIcon />
+        </Button>
+        {status && (
+          <p role="status" className="mt-4 text-sm text-success">
+            {status}
+          </p>
+        )}
+      </form>
+      <div className="direct-contact">
+        <span>Or reach us directly:</span>
+        <a href={EMAIL}>
+          <Mail size={15} />
+          ceo@cyberworldgroups.com
+        </a>
+        <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+          <MessageCircle size={15} />
+          +1 (470) 317-8834
+        </a>
+      </div>
+    </Section>
+  );
+}
+function SendIcon() {
+  return <ArrowUpRight size={16} />;
+}
+function Placeholder({ name, children }: { name: string; children: React.ReactNode }) {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="link" className="h-auto p-0 text-muted-foreground">
+          {children}
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogTitle>{name}</DialogTitle>
+        <DialogDescription>
+          The {name.toLowerCase()}{" "}
+          {name.includes("Policy") || name.includes("Terms") ? "content" : "link"} has not been
+          supplied yet. Please contact CyberWorld Automations for details.
+        </DialogDescription>
+        <Button asChild>
+          <a href={EMAIL}>
+            Email CyberWorld Automations
+            <ArrowUpRight />
+          </a>
+        </Button>
+      </DialogContent>
+    </Dialog>
+  );
+}
+function Footer() {
+  return (
+    <footer className="site-footer">
+      <div className="content-width">
+        <div className="footer-top">
+          <div>
+            <Brand />
+            <p className="mt-4 text-xs text-muted-foreground">
+              CyberWorld Automations — A CyberWorld Groups Company
+            </p>
+            <div className="mt-4">
+              <Placeholder name="CyberWorld Groups website">
+                Visit CyberWorld Groups <ArrowUpRight size={13} />
+              </Placeholder>
+            </div>
+          </div>
+          <div>
+            <h4>Explore</h4>
+            <nav className="footer-links" aria-label="Footer navigation">
+              {navLinks.map(([label, id]) => (
+                <a key={id} href={`#${id}`}>
+                  {label}
+                </a>
+              ))}
+            </nav>
+          </div>
+          <div>
+            <h4>Let’s connect</h4>
+            <a className="footer-contact" href={EMAIL}>
+              ceo@cyberworldgroups.com
+            </a>
+            <a className="footer-contact" href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+              +1 (470) 317-8834
+            </a>
+            <div className="social-links">
+              {[
+                [Music2, "TikTok"],
+                [Linkedin, "LinkedIn"],
+                [Instagram, "Instagram"],
+                [Youtube, "YouTube"],
+              ].map(([Icon, name]) => {
+                const SocialIcon = Icon as typeof Music2;
+                return (
+                  <Placeholder key={String(name)} name={String(name)}>
+                    <span aria-label={String(name)} title={String(name)}>
+                      <SocialIcon size={17} />
+                    </span>
+                  </Placeholder>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+        <p className="serving">
+          <Globe2 size={14} />
+          Serving businesses across the United States, Canada & Europe
+        </p>
+        <div className="footer-bottom">
+          <span>Copyright © 2025 CyberWorld Groups. All rights reserved.</span>
+          <div className="flex gap-5">
+            <Placeholder name="Privacy Policy">Privacy Policy</Placeholder>
+            <Placeholder name="Terms of Service">Terms of Service</Placeholder>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+export function Website() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("revealed");
+            observer.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.08 },
+    );
+    document.querySelectorAll(".reveal").forEach((e) => observer.observe(e));
+    return () => observer.disconnect();
+  }, []);
+  return (
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <IntroSections />
+        <Results />
+        <Testimonials />
+        <IndustryTabs />
+        <Pricing />
+        <Stats />
+        <Contact />
+      </main>
+      <Footer />
+      <Button asChild className="whatsapp-float">
+        <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+          <MessageCircle size={20} />
+          <span>Chat on WhatsApp</span>
+        </a>
+      </Button>
+    </>
+  );
+}
