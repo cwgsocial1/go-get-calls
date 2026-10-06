@@ -14,7 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      website_inquiries: {
+        Row: {
+          consent: boolean
+          created_at: string
+          crm: string | null
+          delivery_status: string
+          email: string
+          id: string
+          industry: string
+          kind: string
+          message: string
+          name: string
+          phone: string | null
+          request_hash: string
+          updated_at: string
+        }
+        Insert: {
+          consent?: boolean
+          created_at?: string
+          crm?: string | null
+          delivery_status?: string
+          email: string
+          id?: string
+          industry: string
+          kind?: string
+          message: string
+          name: string
+          phone?: string | null
+          request_hash: string
+          updated_at?: string
+        }
+        Update: {
+          consent?: boolean
+          created_at?: string
+          crm?: string | null
+          delivery_status?: string
+          email?: string
+          id?: string
+          industry?: string
+          kind?: string
+          message?: string
+          name?: string
+          phone?: string | null
+          request_hash?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
