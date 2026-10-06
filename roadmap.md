@@ -3,3 +3,9 @@
 - [x] Add brand styling, visuals and SEO.
 - [x] Verify booking links, interactions and mobile/desktop layout.
 - [x] Verify 12 sections, single-column mobile grids, touch targets and no small-screen overflow.
+- [ ] Apply October 6 honesty, copy, optional config, team, proof and timeline corrections.
+- [ ] Add booking, confirmation, legal, industry, CRM, about, FAQ and blog pages.
+- [ ] Add structured data, static rendering, sitemap, crawler files, consent and tracking.
+- [ ] Store contact and pre-call submissions securely and verify forms.
+- [ ] Deliver inquiry emails — blocked until sender domain is configured and verified.
+- [ ] Verify all pages and provide correction report, metadata and missing config fields.
