@@ -1,0 +1,1 @@
+CREATE POLICY "Website processing only" ON public.website_inquiries FOR ALL TO service_role USING (true) WITH CHECK (true);
