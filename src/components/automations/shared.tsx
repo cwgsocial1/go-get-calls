@@ -1,5 +1,6 @@
 import { ArrowUpRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackEvent } from "@/lib/tracking";
 import type { ReactNode } from "react";
 
 export const BOOKING = "https://calendly.com/cwgsocial1/30min?month=2026-10";
@@ -22,7 +23,7 @@ export function Blueprint({
 }) {
   return (
     <Button asChild className={`blueprint ${className}`}>
-      <a href={BOOKING} target="_blank" rel="noopener noreferrer">
+      <a href={BOOKING} onClick={()=>trackEvent("booking_click")} target="_blank" rel="noopener noreferrer">
         {children}
         <ArrowUpRight size={17} />
       </a>
@@ -32,7 +33,7 @@ export function Blueprint({
 export function Brand() {
   return (
     <a
-      href="#home"
+      href="/#home"
       className="flex min-w-0 items-center gap-2.5"
       aria-label="CyberWorld Automations home"
     >

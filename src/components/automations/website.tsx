@@ -35,11 +35,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Blueprint, Brand, EMAIL, WHATSAPP, Heading, Section, navLinks } from "./shared";
-import { industries, services, steps, projects, testimonials, plans, faqs } from "./data";
+import { industries, services, steps, projects, plans, faqs } from "./data";
 import { Mockup } from "./mockup";
-import heroImage from "@/assets/automation-grid.jpg";
+import { siteConfig, business } from "@/config/siteConfig";
+import { FounderIntro, FounderVideo, TeamSection, Credibility, Proof, Fit, ClearTerms } from "./trust";
+import { InquiryForm } from "./inquiry-form";
+import { trackEvent } from "@/lib/tracking";
 
-function Header() {
+export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -54,7 +57,7 @@ function Header() {
         <Brand />
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
           {navLinks.map(([label, id]) => (
-            <a key={id} href={`#${id}`}>
+            <a key={id} href={`/#${id}`}>
               {label}
             </a>
           ))}
@@ -76,7 +79,7 @@ function Header() {
       {open && (
         <nav className="mobile-menu lg:hidden" aria-label="Mobile navigation">
           {navLinks.map(([label, id]) => (
-            <a key={id} href={`#${id}`} onClick={() => setOpen(false)}>
+            <a key={id} href={`/#${id}`} onClick={() => setOpen(false)}>
               {label}
             </a>
           ))}
@@ -89,38 +92,19 @@ function Header() {
 function Hero() {
   return (
     <section id="home" className="hero-section">
-      <img
-        className="hero-backdrop"
-        src={heroImage}
-        alt=""
-        width={1920}
-        height={1024}
-        fetchPriority="high"
-      />
-      <div className="hero-shade" />
       <div className="content-width relative z-10">
         <div className="hero-copy">
           <div className="hero-eyebrow">
-            <span className="status-dot" /> YOUR GROWTH. ON AUTOPILOT.
+            <span className="status-dot" /> CYBERWORLD AUTOMATIONS · GOHIGHLEVEL SPECIALISTS
           </div>
-          <h1>
-            We Build{" "}
-            <span className="text-primary">
-              Automated
-              <br className="hidden sm:block" /> Sales Machines
-            </span>{" "}
-            for Real Estate,
-            <br className="hidden lg:block" /> Home Services & Online Coaches
-          </h1>
-          <p className="hero-description">
-            Stop losing leads. We set up GoHighLevel automation systems that capture, nurture, and
-            convert your leads on autopilot — so you can focus on closing deals.
-          </p>
+          <h1>GoHighLevel automation for <span className="text-primary">Real Estate, Home Services & Online Coaches</span></h1>
+          <p className="mt-5 font-semibold">Founder-led. You talk to Ayodele, not a call center.</p>
+          <p className="hero-description">I'm Ayodele. I build CRM, funnel and follow-up systems so each new inquiry has a reply, a next step and someone responsible for it.</p>
           <div className="hero-actions">
             <Blueprint />
             <Button asChild variant="outline" className="secondary-cta">
               <a href="#results">
-                See Our Results <ArrowRight />
+                See Example Systems <ArrowRight />
               </a>
             </Button>
           </div>
@@ -132,34 +116,11 @@ function Hero() {
               <CheckCircle2 /> No obligation
             </span>
             <span>
-              <CheckCircle2 /> Live in 14 days
+              <CheckCircle2 /> Typical build: about 14 days
             </span>
           </div>
         </div>
-        <div className="hero-trust">
-          <div className="trust-people">
-            <span>JR</span>
-            <span>SM</span>
-            <span>DK</span>
-            <span>LT</span>
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-success text-xs">★★★★★</span>
-              <span className="text-xs font-semibold">4.9/5 client satisfaction</span>
-            </div>
-            <p>
-              Trusted by <strong>50+ businesses</strong> across the US, Canada & Europe
-            </p>
-          </div>
-          <div className="trust-platform">
-            <Zap size={19} />
-            <span>
-              Built on <strong>GoHighLevel</strong>
-            </span>
-            <ShieldCheck size={22} className="text-success" />
-          </div>
-        </div>
+        <div className="hero-trust"><p>Built on GoHighLevel · Serving the US, Canada & Europe</p></div>
       </div>
       <div className="hero-bottom content-width">
         <span>THREE INDUSTRIES. ONE SPECIALIZED PARTNER.</span>
@@ -200,7 +161,7 @@ function IntroSections() {
         </div>
         <p className="section-bottom-line reveal">
           If any of this sounds like you,{" "}
-          <span className="text-primary">we can fix it in 14 days or less.</span>
+          <span className="text-primary">let’s map out a better follow-up system.</span>
         </p>
       </Section>
       <Section className="alternate">
@@ -224,8 +185,8 @@ function IntroSections() {
         </div>
       </Section>
       <Section id="how-it-works">
-        <Heading eyebrow="FROM CHAOS TO CONNECTED" title="How It Works — 3 Simple Steps" />
-        <div className="steps-grid">
+        <Heading eyebrow="A CLEAR PLAN, THEN A BUILD" title="How I work with you" />
+        <div className="build-timeline">
           {steps.map((s, i) => (
             <article className="step reveal" key={s.title}>
               <div className="step-top">
@@ -237,10 +198,11 @@ function IntroSections() {
             </article>
           ))}
         </div>
+        <aside className="expectations"><h3>What you can expect from us</h3><p>Replies within one business day · A short video update each week · One point of contact</p></aside>
         <div className="center-cta">
           <p className="mb-5 flex items-center justify-center gap-2 text-sm text-muted-foreground">
             <Clock3 size={16} className="text-success" />
-            Most systems are fully live within 14 days.
+            A typical build takes about 14 days. We agree on scope first.
           </p>
           <Blueprint>Get My Free Blueprint</Blueprint>
         </div>
@@ -251,7 +213,7 @@ function IntroSections() {
 function Results() {
   return (
     <Section id="results" className="alternate">
-      <Heading eyebrow="BUILT FOR REAL-WORLD GROWTH" title="Our Work Speaks for Itself" />
+      <Heading eyebrow="EXAMPLE SCENARIOS" title="What Your System Could Look Like" />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((p) => (
           <article
@@ -259,7 +221,7 @@ function Results() {
             key={p.title}
           >
             <div className="project-preview">
-              <Mockup type={p.type} compact />
+              <Mockup type={p.type} compact /><p className="mockup-caption">Example dashboard. Sample data.</p>
             </div>
             <div className="project-body">
               <span className="industry-tag">
@@ -269,81 +231,18 @@ function Results() {
               </span>
               <h3>{p.title}</h3>
               <p>{p.description}</p>
-              <div className="project-result">
-                <strong>{p.metric}</strong>
-                <span>{p.result}</span>
-              </div>
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="link" className="h-auto p-0">
-                    View Case Study <ArrowUpRight size={15} />
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="max-h-[85vh] overflow-y-auto">
-                  <DialogTitle className="pr-5 leading-relaxed">{p.title}</DialogTitle>
-                  <DialogDescription>
-                    {industries[p.industry]?.name ?? "Real Estate"} • GoHighLevel automation
-                  </DialogDescription>
-                  <Mockup type={p.type} compact />
-                  <p className="text-sm leading-relaxed text-muted-foreground">{p.description}</p>
-                  <div className="project-result">
-                    <strong>{p.metric}</strong>
-                    <span>{p.result}</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground">
-                    Project summary supplied by CyberWorld Automations. Visual shown is an
-                    illustrative system mockup.
-                  </p>
-                  <Blueprint />
-                </DialogContent>
-              </Dialog>
+              <span className="example-badge">Example scenario</span>
+              <div className="project-result"><span><b>Target outcome:</b> {p.result}</span></div>
+              <Blueprint className="scenario-cta">Get a Blueprint Like This</Blueprint>
             </div>
           </article>
         ))}
       </div>
       <div className="center-cta">
         <p className="mb-6 text-sm text-muted-foreground">
-          These are real results from real businesses. Yours could be next.
+          Every project starts with a free blueprint. You see the full plan before we build anything.
         </p>
         <Blueprint />
-      </div>
-    </Section>
-  );
-}
-function Testimonials() {
-  return (
-    <Section>
-      <Heading eyebrow="GOOD SYSTEMS. HAPPY CLIENTS." title="What Our Clients Say" />
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {testimonials.map((t) => (
-          <article
-            key={t.name}
-            className={`testimonial-card reveal ${industries[t.industry]?.tone ?? "estate"}`}
-          >
-            <div className="flex justify-between">
-              <span className="stars" aria-label="5 out of 5 stars">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <Star key={i} size={13} fill="currentColor" />
-                ))}
-              </span>
-              <Quote size={22} className="text-muted-foreground/40" />
-            </div>
-            <blockquote>“{t.quote}”</blockquote>
-            <div className="testimonial-person">
-              <span className="person-avatar">
-                {t.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")}
-              </span>
-              <div>
-                <strong>{t.name}</strong>
-                <span>{t.role}</span>
-              </div>
-            </div>
-            <span className="industry-tag">{industries[t.industry]?.name ?? "Real Estate"}</span>
-          </article>
-        ))}
       </div>
     </Section>
   );
@@ -410,7 +309,7 @@ function Pricing() {
           <article key={p.name} className={`pricing-card reveal ${i === 1 ? "popular" : ""}`}>
             {i === 1 && (
               <div className="popular-label">
-                <Zap size={12} /> MOST POPULAR
+                <Zap size={12} /> GROWING TEAMS
               </div>
             )}
             <div className="pricing-content">
@@ -438,16 +337,8 @@ function Pricing() {
                   </li>
                 ))}
               </ul>
-              {i === 2 ? (
-                <Button asChild variant="outline" className="h-12 w-full">
-                  <a href={EMAIL}>
-                    Contact Us
-                    <ArrowUpRight />
-                  </a>
-                </Button>
-              ) : (
-                <Blueprint className="w-full">Get My Blueprint</Blueprint>
-              )}
+              <p className="plan-exclusions"><b>Not included:</b> {i===0?'Advanced workflows, reputation management, custom integrations or extended optimization.':i===1?'Custom API integrations, multiple pipelines or a dedicated account manager.':'Any service outside your agreed written scope.'}</p>
+              <Blueprint className="w-full">{i===2?'Discuss my blueprint':'Get My Blueprint'}</Blueprint>
             </div>
           </article>
         ))}
@@ -456,6 +347,7 @@ function Pricing() {
         All plans start with a free Automation Blueprint call.
         <br className="sm:hidden" /> Not sure which plan? Let's figure it out together.
       </p>
+      <ClearTerms/>
       <div className="faq-wrap">
         <div className="eyebrow justify-center">A LITTLE MORE CLARITY</div>
         <h3 className="mb-6 text-center text-2xl font-bold">Frequently asked questions</h3>
@@ -473,160 +365,21 @@ function Pricing() {
     </Section>
   );
 }
-function Stats() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-    let frame = 0;
-    const observer = new IntersectionObserver(
-      ([e]) => {
-        if (!e?.isIntersecting) return;
-        observer.disconnect();
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          setProgress(1);
-          return;
-        }
-        let start = 0;
-        const tick = (time: number) => {
-          if (!start) start = time;
-          const p = Math.min((time - start) / 1300, 1);
-          setProgress(1 - Math.pow(1 - p, 3));
-          if (p < 1) frame = requestAnimationFrame(tick);
-        };
-        frame = requestAnimationFrame(tick);
-      },
-      { threshold: 0.4 },
-    );
-    observer.observe(node);
-    return () => {
-      observer.disconnect();
-      cancelAnimationFrame(frame);
-    };
-  }, []);
-  return (
-    <div ref={ref} className="stats-band">
-      <div className="content-width stats-grid">
-        {[
-          [50, "+", "Businesses Automated"],
-          [3, "", "Industries Served"],
-          [14, "-Day", "Average Delivery"],
-          [4.9, "/5", "Client Satisfaction"],
-        ].map(([n, s, label]) => (
-          <div key={label}>
-            <strong>
-              {Number(n) === 4.9
-                ? (Number(n) * progress).toFixed(1)
-                : Math.round(Number(n) * progress)}
-              <span>{s}</span>
-            </strong>
-            <p>{label}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+function Stats(){return <div className="stats-band"><div className="content-width stats-grid">{[["3","Industries We Specialize In"],["14-Day","Typical Delivery"],["30-Min","Free Strategy Call"],["24/7","Automated Follow-Up"]].map(([value,label])=><div key={label}><strong>{value}</strong><p>{label}</p></div>)}</div></div>}
 function Contact() {
-  const [status, setStatus] = useState("");
-  function submit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const body = `Full Name: ${form.get("name")}\nEmail: ${form.get("email")}\nPhone: ${form.get("phone")}\nIndustry: ${form.get("industry")}\n\n${form.get("message")}`;
-    window.location.href = `${EMAIL}?subject=${encodeURIComponent("Automation Blueprint inquiry")}&body=${encodeURIComponent(body)}`;
-    setStatus(
-      "Your message is ready in your email app. Please send it there to complete your inquiry.",
-    );
-  }
   return (
     <Section id="contact" className="contact-section">
       <div className="contact-heading reveal">
         <div className="eyebrow justify-center">
           <span /> LET’S BUILD YOUR NEXT CHAPTER
         </div>
-        <h2>
-          Ready to Stop Losing Leads and
-          <br className="hidden md:block" /> Start Growing{" "}
-          <span className="text-primary">on Autopilot?</span>
-        </h2>
-        <p>
-          Get your free Automation Blueprint today. In 30 minutes, we'll map out exactly what your
-          automated system would look like — and show you where you're leaving money on the table.
-        </p>
+        <h2>Let's talk about your follow-up</h2><p>Bring your current process and your biggest lead problem. I’ll help you work out what to automate and what still needs a person.</p>
         <Blueprint />
         <p className="no-pressure">
           No obligation. No pressure. Just a clear plan you can keep — even if you never hire us.
         </p>
       </div>
-      <form onSubmit={submit} className="contact-form">
-        <h3>Prefer to send a message?</h3>
-        <div className="grid gap-5 sm:grid-cols-2">
-          <label>
-            Full Name
-            <input
-              name="name"
-              required
-              autoComplete="name"
-              placeholder="Your full name"
-              maxLength={120}
-            />
-          </label>
-          <label>
-            Email Address
-            <input
-              name="email"
-              required
-              type="email"
-              autoComplete="email"
-              placeholder="you@company.com"
-            />
-          </label>
-          <label>
-            Phone Number
-            <input
-              name="phone"
-              required
-              type="tel"
-              autoComplete="tel"
-              placeholder="+1 (555) 000-0000"
-              pattern={"[\\d\\s\\+\\(\\)\\.\\-]{7,25}"}
-              title="Enter a valid phone number (7–25 characters)"
-            />
-          </label>
-          <label>
-            Industry
-            <select name="industry" required defaultValue="">
-              <option value="" disabled>
-                Select your industry
-              </option>
-              <option>Real Estate</option>
-              <option>Home Services</option>
-              <option>Online Coaching</option>
-              <option>Other</option>
-            </select>
-          </label>
-        </div>
-        <label className="mt-5 block">
-          Message
-          <textarea
-            name="message"
-            required
-            rows={4}
-            placeholder="Tell us about your business and what you'd like to automate…"
-            maxLength={4000}
-          />
-        </label>
-        <Button type="submit" className="blueprint mt-5 w-full">
-          Send Us a Message
-          <SendIcon />
-        </Button>
-        {status && (
-          <p role="status" className="mt-4 text-sm text-success">
-            {status}
-          </p>
-        )}
-      </form>
+      <InquiryForm/>
       <div className="direct-contact">
         <span>Or reach us directly:</span>
         <a href={EMAIL}>
@@ -641,35 +394,7 @@ function Contact() {
     </Section>
   );
 }
-function SendIcon() {
-  return <ArrowUpRight size={16} />;
-}
-function Placeholder({ name, children }: { name: string; children: React.ReactNode }) {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="link" className="h-auto p-0 text-muted-foreground">
-          {children}
-        </Button>
-      </DialogTrigger>
-      <DialogContent>
-        <DialogTitle>{name}</DialogTitle>
-        <DialogDescription>
-          The {name.toLowerCase()}{" "}
-          {name.includes("Policy") || name.includes("Terms") ? "content" : "link"} has not been
-          supplied yet. Please contact CyberWorld Automations for details.
-        </DialogDescription>
-        <Button asChild>
-          <a href={EMAIL}>
-            Email CyberWorld Automations
-            <ArrowUpRight />
-          </a>
-        </Button>
-      </DialogContent>
-    </Dialog>
-  );
-}
-function Footer() {
+export function Footer() {
   return (
     <footer className="site-footer">
       <div className="content-width">
@@ -680,16 +405,14 @@ function Footer() {
               CyberWorld Automations — A CyberWorld Groups Company
             </p>
             <div className="mt-4">
-              <Placeholder name="CyberWorld Groups website">
-                Visit CyberWorld Groups <ArrowUpRight size={13} />
-              </Placeholder>
+              <a href={business.parentUrl} target="_blank" rel="noopener noreferrer" className="text-primary">Visit CyberWorld Groups <ArrowUpRight size={13}/></a>
             </div>
           </div>
           <div>
             <h4>Explore</h4>
             <nav className="footer-links" aria-label="Footer navigation">
               {navLinks.map(([label, id]) => (
-                <a key={id} href={`#${id}`}>
+                <a key={id} href={`/#${id}`}>
                   {label}
                 </a>
               ))}
@@ -703,23 +426,7 @@ function Footer() {
             <a className="footer-contact" href={WHATSAPP} target="_blank" rel="noopener noreferrer">
               +1 (470) 317-8834
             </a>
-            <div className="social-links">
-              {[
-                [Music2, "TikTok"],
-                [Linkedin, "LinkedIn"],
-                [Instagram, "Instagram"],
-                [Youtube, "YouTube"],
-              ].map(([Icon, name]) => {
-                const SocialIcon = Icon as typeof Music2;
-                return (
-                  <Placeholder key={String(name)} name={String(name)}>
-                    <span aria-label={String(name)} title={String(name)}>
-                      <SocialIcon size={17} />
-                    </span>
-                  </Placeholder>
-                );
-              })}
-            </div>
+            <div className="social-links">{Object.entries(siteConfig.socialProfiles??{}).filter(([,url])=>url).map(([name,url])=><a key={name} href={url} target="_blank" rel="noopener noreferrer">{name}</a>)}</div>
           </div>
         </div>
         <p className="serving">
@@ -727,10 +434,10 @@ function Footer() {
           Serving businesses across the United States, Canada & Europe
         </p>
         <div className="footer-bottom">
-          <span>Copyright © 2025 CyberWorld Groups. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} CyberWorld Groups. All rights reserved.</span>
           <div className="flex gap-5">
-            <Placeholder name="Privacy Policy">Privacy Policy</Placeholder>
-            <Placeholder name="Terms of Service">Terms of Service</Placeholder>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
           </div>
         </div>
       </div>
@@ -758,17 +465,23 @@ export function Website() {
       <Header />
       <main>
         <Hero />
+        <FounderIntro />
+        {!siteConfig.founderPhoto && <FounderVideo/>}
+        <Credibility/>
         <IntroSections />
         <Results />
-        <Testimonials />
+        <Proof />
+        <TeamSection />
+        <Fit/>
         <IndustryTabs />
         <Pricing />
         <Stats />
         <Contact />
       </main>
       <Footer />
+      <div className="sticky-booking"><Blueprint>{siteConfig.founderPhoto&&<img src={siteConfig.founderPhoto} alt="Ayodele Ezekiel" width={32} height={32}/>}Book a free 30-minute call</Blueprint></div>
       <Button asChild className="whatsapp-float">
-        <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+        <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" onClick={()=>trackEvent("whatsapp_click")} title="Hi, I’m Ayodele’s team. Ask us anything about automation.">
           <MessageCircle size={20} />
           <span>Chat on WhatsApp</span>
         </a>

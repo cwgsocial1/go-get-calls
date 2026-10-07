@@ -11,6 +11,7 @@ import {
   Phone,
   FileCheck,
   Rocket,
+  Users,
 } from "lucide-react";
 export const industries = [
   {
@@ -23,7 +24,7 @@ export const industries = [
       "Your CRM is a mess or you don't even have one",
     ],
     description:
-      "Turn every property inquiry into a conversation. From agents and brokerages to property managers, your GHL system keeps leads engaged and your calendar full.",
+      "It's 9pm. A Zillow lead comes in while you're at your kid's game. By morning, they may have called other agents. I connect your inquiries to a reply and a clear next step.",
     bullets: [
       "Zillow & Facebook lead capture with instant SMS follow-up",
       "Automated showing appointments and reminders",
@@ -41,7 +42,7 @@ export const industries = [
       "Scheduling and follow-ups are all manual",
     ],
     description:
-      "Win more jobs without adding more admin. We build GHL systems for HVAC, plumbing, roofing, cleaning, landscaping and electrical businesses.",
+      "You're on a job and the phone rings. You can't answer, and a potential customer still needs help. I connect missed calls, estimate follow-up and scheduling for home service teams.",
     bullets: [
       "Missed-call text-back and instant lead responses",
       "Estimate follow-ups and easy job scheduling",
@@ -59,7 +60,7 @@ export const industries = [
       "No automated system to onboard and nurture clients",
     ],
     description:
-      "Spend your time coaching, not chasing leads. Business, fitness and life coaches, consultants and course creators get a connected journey from first click to loyal client.",
+      "You've finished a coaching session and there are unread inquiries in three places. I bring the next reply, call booking and onboarding into one GHL system.",
     bullets: [
       "Webinar and course registration funnels",
       "Email & SMS nurturing and sales call booking",
@@ -79,7 +80,7 @@ export const services = [
     icon: LayoutTemplate,
     title: "Sales Funnel Building",
     description:
-      "High-converting landing pages and funnels designed to capture and convert leads automatically.",
+      "I build focused landing pages that collect inquiries and give each visitor a clear next step.",
   },
   {
     icon: Send,
@@ -96,7 +97,7 @@ export const services = [
     icon: Star,
     title: "Reputation Management",
     description:
-      "Automated review requests after every job or session. Build 5-star credibility on autopilot.",
+      "I connect completed jobs or sessions to a request for honest feedback.",
   },
   {
     icon: Workflow,
@@ -106,109 +107,19 @@ export const services = [
   },
 ];
 export const steps = [
-  {
-    icon: Phone,
-    title: "Free Strategy Call",
-    description:
-      "We hop on a 30-minute call to understand your business, your current systems, and where you're losing leads.",
-  },
-  {
-    icon: FileCheck,
-    title: "Your Custom Automation Blueprint",
-    description:
-      "We design a tailored GHL automation system specifically for your industry and business model. You see the full plan before we build anything.",
-  },
-  {
-    icon: Rocket,
-    title: "Build, Launch & Optimize",
-    description:
-      "We build everything inside GoHighLevel, launch it, train your team, and optimize for results over 30 days.",
-  },
+ {icon:Phone,title:"Free call",description:"We talk for 30 minutes about your leads, your tools and where follow-up gets stuck."},
+ {icon:FileCheck,title:"Written blueprint",description:"I write down the proposed system and scope. You see the plan before you pay."},
+ {icon:Workflow,title:"Build (about 14 days)",description:"We set up the agreed CRM, funnels and workflows. Larger integrations may need longer."},
+ {icon:Users,title:"Handover and training",description:"We walk your team through the system, test the handoffs and show you how to use it."},
+ {icon:Rocket,title:"30 days of optimization",description:"Growth includes 30 days of optimization. Enterprise includes 60 days; Starter does not include extended optimization."},
 ];
 export const projects = [
-  {
-    industry: 0,
-    title: "Texas Brokerage",
-    description:
-      "Built a full GHL system with automated lead capture from Zillow & Facebook Ads, instant SMS follow-up, and appointment booking.",
-    metric: "340%",
-    result: "increase in booked showings",
-    type: "pipeline",
-  },
-  {
-    industry: 0,
-    title: "Canadian Property Management Firm",
-    description:
-      "CRM migration from spreadsheets to GHL. Automated tenant inquiry responses and review collection.",
-    metric: "60%",
-    result: "less admin time",
-    type: "workflow",
-  },
-  {
-    industry: 1,
-    title: "Florida HVAC Company",
-    description:
-      "Automated estimate follow-ups, job completion review requests, and seasonal re-engagement campaigns.",
-    metric: "127",
-    result: "new 5-star reviews in 90 days",
-    type: "reviews",
-  },
-  {
-    industry: 1,
-    title: "UK Cleaning Company",
-    description:
-      "Built a complete booking funnel with automated confirmations, reminders, and upsell sequences.",
-    metric: "45%",
-    result: "increase in repeat bookings",
-    type: "calendar",
-  },
-  {
-    industry: 2,
-    title: "US Business Coach",
-    description:
-      "Sales funnel + automated webinar registration + email nurture sequence + calendar booking.",
-    metric: "5 → 22",
-    result: "sales calls per week",
-    type: "funnel",
-  },
-  {
-    industry: 2,
-    title: "European Fitness Coach",
-    description: "Automated client onboarding, check-in reminders, and referral program.",
-    metric: "35%",
-    result: "increase in client retention",
-    type: "workflow",
-  },
-];
-export const testimonials = [
-  {
-    quote:
-      "CyberWorld completely transformed how we handle leads. We went from missing 70% of our inquiries to responding in under a minute. Game changer.",
-    name: "James R.",
-    role: "Real Estate Broker, Texas",
-    industry: 0,
-  },
-  {
-    quote:
-      "I was drowning in admin work. Now everything from booking to follow-up is automated. I got 10 hours of my week back.",
-    name: "Sarah M.",
-    role: "HVAC Business Owner, Florida",
-    industry: 1,
-  },
-  {
-    quote:
-      "My coaching business finally feels scalable. The funnel they built converts at 12% and the follow-up sequences close deals while I sleep.",
-    name: "David K.",
-    role: "Online Business Coach, UK",
-    industry: 2,
-  },
-  {
-    quote:
-      "Professional, fast, and they actually understand our industry. Best investment we made this year.",
-    name: "Lisa T.",
-    role: "Property Manager, Ontario, Canada",
-    industry: 0,
-  },
+ {industry:0,title:"Real Estate Brokerage",description:"Property inquiries flow into one pipeline, with an initial reply and showing reminders.",result:"Faster follow-up and clearer showing requests",type:"pipeline"},
+ {industry:0,title:"Property Management Firm",description:"Tenant inquiries are organized in a CRM with response workflows and review requests.",result:"Less manual administration",type:"workflow"},
+ {industry:1,title:"HVAC Company",description:"Estimate follow-ups, review requests and seasonal reminders share one system.",result:"Consistent estimate follow-up",type:"reviews"},
+ {industry:1,title:"Cleaning Company",description:"A booking funnel connects confirmations, reminders and repeat-service follow-up.",result:"Simpler repeat bookings",type:"calendar"},
+ {industry:2,title:"Business Coach",description:"A registration funnel connects webinar reminders, email follow-up and call booking.",result:"A clearer path from inquiry to consultation",type:"funnel"},
+ {industry:2,title:"Fitness Coach",description:"Client onboarding, check-in reminders and referral requests are organized together.",result:"More consistent client communication",type:"workflow"},
 ];
 export const plans = [
   {
@@ -221,7 +132,7 @@ export const plans = [
       "1 sales funnel",
       "Basic follow-up sequence (email + SMS)",
       "Calendar booking integration",
-      "14-day delivery",
+      "About 14-day build",
     ],
   },
   {
@@ -264,7 +175,7 @@ export const faqs = [
   ],
   [
     "How long does setup take?",
-    "Most systems are fully live within 14 days. Larger builds and custom integrations can take longer; we agree on your timeline before building.",
+    "A typical build takes about 14 days. Larger builds and custom integrations can take longer; we agree on your timeline before building.",
   ],
   [
     "Do you offer ongoing support?",
