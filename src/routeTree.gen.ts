@@ -10,33 +10,209 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as BookRouteImport } from './routes/book'
+import { Route as BookingConfirmationRouteImport } from './routes/booking-confirmation'
+import { Route as CoachAutomationRouteImport } from './routes/coach-automation'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as GhlCrmSetupRouteImport } from './routes/ghl-crm-setup'
+import { Route as HomeServicesAutomationRouteImport } from './routes/home-services-automation'
+import { Route as RealEstateAutomationRouteImport } from './routes/real-estate-automation'
+import { Route as ResultsRouteImport } from './routes/results'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogFiveRealEstateFollowUpMessagesRouteImport } from './routes/blog.five-real-estate-follow-up-messages'
+import { Route as BlogHowFastToRespondToANewLeadRouteImport } from './routes/blog.how-fast-to-respond-to-a-new-lead'
+import { Route as BlogSpreadsheetsToGohighlevelChecklistRouteImport } from './routes/blog.spreadsheets-to-gohighlevel-checklist'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookRoute = BookRouteImport.update({
+  id: '/book',
+  path: '/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookingConfirmationRoute = BookingConfirmationRouteImport.update({
+  id: '/booking-confirmation',
+  path: '/booking-confirmation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoachAutomationRoute = CoachAutomationRouteImport.update({
+  id: '/coach-automation',
+  path: '/coach-automation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GhlCrmSetupRoute = GhlCrmSetupRouteImport.update({
+  id: '/ghl-crm-setup',
+  path: '/ghl-crm-setup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeServicesAutomationRoute = HomeServicesAutomationRouteImport.update({
+  id: '/home-services-automation',
+  path: '/home-services-automation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RealEstateAutomationRoute = RealEstateAutomationRouteImport.update({
+  id: '/real-estate-automation',
+  path: '/real-estate-automation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResultsRoute = ResultsRouteImport.update({
+  id: '/results',
+  path: '/results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogFiveRealEstateFollowUpMessagesRoute =
+  BlogFiveRealEstateFollowUpMessagesRouteImport.update({
+    id: '/blog/five-real-estate-follow-up-messages',
+    path: '/blog/five-real-estate-follow-up-messages',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogHowFastToRespondToANewLeadRoute =
+  BlogHowFastToRespondToANewLeadRouteImport.update({
+    id: '/blog/how-fast-to-respond-to-a-new-lead',
+    path: '/blog/how-fast-to-respond-to-a-new-lead',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogSpreadsheetsToGohighlevelChecklistRoute =
+  BlogSpreadsheetsToGohighlevelChecklistRouteImport.update({
+    id: '/blog/spreadsheets-to-gohighlevel-checklist',
+    path: '/blog/spreadsheets-to-gohighlevel-checklist',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/book': typeof BookRoute
+  '/booking-confirmation': typeof BookingConfirmationRoute
+  '/coach-automation': typeof CoachAutomationRoute
+  '/faq': typeof FaqRoute
+  '/ghl-crm-setup': typeof GhlCrmSetupRoute
+  '/home-services-automation': typeof HomeServicesAutomationRoute
+  '/real-estate-automation': typeof RealEstateAutomationRoute
+  '/results': typeof ResultsRoute
+  '/blog/five-real-estate-follow-up-messages': typeof BlogFiveRealEstateFollowUpMessagesRoute
+  '/blog/how-fast-to-respond-to-a-new-lead': typeof BlogHowFastToRespondToANewLeadRoute
+  '/blog/spreadsheets-to-gohighlevel-checklist': typeof BlogSpreadsheetsToGohighlevelChecklistRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/book': typeof BookRoute
+  '/booking-confirmation': typeof BookingConfirmationRoute
+  '/coach-automation': typeof CoachAutomationRoute
+  '/faq': typeof FaqRoute
+  '/ghl-crm-setup': typeof GhlCrmSetupRoute
+  '/home-services-automation': typeof HomeServicesAutomationRoute
+  '/real-estate-automation': typeof RealEstateAutomationRoute
+  '/results': typeof ResultsRoute
+  '/blog/five-real-estate-follow-up-messages': typeof BlogFiveRealEstateFollowUpMessagesRoute
+  '/blog/how-fast-to-respond-to-a-new-lead': typeof BlogHowFastToRespondToANewLeadRoute
+  '/blog/spreadsheets-to-gohighlevel-checklist': typeof BlogSpreadsheetsToGohighlevelChecklistRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/book': typeof BookRoute
+  '/booking-confirmation': typeof BookingConfirmationRoute
+  '/coach-automation': typeof CoachAutomationRoute
+  '/faq': typeof FaqRoute
+  '/ghl-crm-setup': typeof GhlCrmSetupRoute
+  '/home-services-automation': typeof HomeServicesAutomationRoute
+  '/real-estate-automation': typeof RealEstateAutomationRoute
+  '/results': typeof ResultsRoute
+  '/blog/five-real-estate-follow-up-messages': typeof BlogFiveRealEstateFollowUpMessagesRoute
+  '/blog/how-fast-to-respond-to-a-new-lead': typeof BlogHowFastToRespondToANewLeadRoute
+  '/blog/spreadsheets-to-gohighlevel-checklist': typeof BlogSpreadsheetsToGohighlevelChecklistRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/book'
+    | '/booking-confirmation'
+    | '/coach-automation'
+    | '/faq'
+    | '/ghl-crm-setup'
+    | '/home-services-automation'
+    | '/real-estate-automation'
+    | '/results'
+    | '/blog/five-real-estate-follow-up-messages'
+    | '/blog/how-fast-to-respond-to-a-new-lead'
+    | '/blog/spreadsheets-to-gohighlevel-checklist'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/book'
+    | '/booking-confirmation'
+    | '/coach-automation'
+    | '/faq'
+    | '/ghl-crm-setup'
+    | '/home-services-automation'
+    | '/real-estate-automation'
+    | '/results'
+    | '/blog/five-real-estate-follow-up-messages'
+    | '/blog/how-fast-to-respond-to-a-new-lead'
+    | '/blog/spreadsheets-to-gohighlevel-checklist'
+    | '/blog'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/book'
+    | '/booking-confirmation'
+    | '/coach-automation'
+    | '/faq'
+    | '/ghl-crm-setup'
+    | '/home-services-automation'
+    | '/real-estate-automation'
+    | '/results'
+    | '/blog/five-real-estate-follow-up-messages'
+    | '/blog/how-fast-to-respond-to-a-new-lead'
+    | '/blog/spreadsheets-to-gohighlevel-checklist'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  BookRoute: typeof BookRoute
+  BookingConfirmationRoute: typeof BookingConfirmationRoute
+  CoachAutomationRoute: typeof CoachAutomationRoute
+  FaqRoute: typeof FaqRoute
+  GhlCrmSetupRoute: typeof GhlCrmSetupRoute
+  HomeServicesAutomationRoute: typeof HomeServicesAutomationRoute
+  RealEstateAutomationRoute: typeof RealEstateAutomationRoute
+  ResultsRoute: typeof ResultsRoute
+  BlogFiveRealEstateFollowUpMessagesRoute: typeof BlogFiveRealEstateFollowUpMessagesRoute
+  BlogHowFastToRespondToANewLeadRoute: typeof BlogHowFastToRespondToANewLeadRoute
+  BlogSpreadsheetsToGohighlevelChecklistRoute: typeof BlogSpreadsheetsToGohighlevelChecklistRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +224,117 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book': {
+      id: '/book'
+      path: '/book'
+      fullPath: '/book'
+      preLoaderRoute: typeof BookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/booking-confirmation': {
+      id: '/booking-confirmation'
+      path: '/booking-confirmation'
+      fullPath: '/booking-confirmation'
+      preLoaderRoute: typeof BookingConfirmationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coach-automation': {
+      id: '/coach-automation'
+      path: '/coach-automation'
+      fullPath: '/coach-automation'
+      preLoaderRoute: typeof CoachAutomationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ghl-crm-setup': {
+      id: '/ghl-crm-setup'
+      path: '/ghl-crm-setup'
+      fullPath: '/ghl-crm-setup'
+      preLoaderRoute: typeof GhlCrmSetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home-services-automation': {
+      id: '/home-services-automation'
+      path: '/home-services-automation'
+      fullPath: '/home-services-automation'
+      preLoaderRoute: typeof HomeServicesAutomationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/real-estate-automation': {
+      id: '/real-estate-automation'
+      path: '/real-estate-automation'
+      fullPath: '/real-estate-automation'
+      preLoaderRoute: typeof RealEstateAutomationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/results': {
+      id: '/results'
+      path: '/results'
+      fullPath: '/results'
+      preLoaderRoute: typeof ResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/five-real-estate-follow-up-messages': {
+      id: '/blog/five-real-estate-follow-up-messages'
+      path: '/blog/five-real-estate-follow-up-messages'
+      fullPath: '/blog/five-real-estate-follow-up-messages'
+      preLoaderRoute: typeof BlogFiveRealEstateFollowUpMessagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/how-fast-to-respond-to-a-new-lead': {
+      id: '/blog/how-fast-to-respond-to-a-new-lead'
+      path: '/blog/how-fast-to-respond-to-a-new-lead'
+      fullPath: '/blog/how-fast-to-respond-to-a-new-lead'
+      preLoaderRoute: typeof BlogHowFastToRespondToANewLeadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/spreadsheets-to-gohighlevel-checklist': {
+      id: '/blog/spreadsheets-to-gohighlevel-checklist'
+      path: '/blog/spreadsheets-to-gohighlevel-checklist'
+      fullPath: '/blog/spreadsheets-to-gohighlevel-checklist'
+      preLoaderRoute: typeof BlogSpreadsheetsToGohighlevelChecklistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  BookRoute: BookRoute,
+  BookingConfirmationRoute: BookingConfirmationRoute,
+  CoachAutomationRoute: CoachAutomationRoute,
+  FaqRoute: FaqRoute,
+  GhlCrmSetupRoute: GhlCrmSetupRoute,
+  HomeServicesAutomationRoute: HomeServicesAutomationRoute,
+  RealEstateAutomationRoute: RealEstateAutomationRoute,
+  ResultsRoute: ResultsRoute,
+  BlogFiveRealEstateFollowUpMessagesRoute:
+    BlogFiveRealEstateFollowUpMessagesRoute,
+  BlogHowFastToRespondToANewLeadRoute: BlogHowFastToRespondToANewLeadRoute,
+  BlogSpreadsheetsToGohighlevelChecklistRoute:
+    BlogSpreadsheetsToGohighlevelChecklistRoute,
+  BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
