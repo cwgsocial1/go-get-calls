@@ -12,7 +12,7 @@ export const submitInquiry = createServerFn({method:'POST'}).inputValidator(data
  const {count,error:limitError} = await supabaseAdmin.from('website_inquiries').select('id',{count:'exact',head:true}).eq('request_hash',requestHash).gte('created_at',new Date(Date.now()-600000).toISOString());
  if(limitError) throw new Error('We could not save your message. Please try again.');
  if((count ?? 0)>=5) throw new Error('Please wait ten minutes before sending another message.');
- const {error} = await supabaseAdmin.from('website_inquiries').insert({name:data.name,email:data.email,phone:data.phone,industry:data.industry,message:data.message,kind:data.kind,crm:data.crm,consent:data.consent,request_hash:requestHash});
+ const {error} = await supabaseAdmin.from('website_inquiries').insert({name:data.name,email:data.email,phone:data.phone ?? null,industry:data.industry,message:data.message,kind:data.kind,crm:data.crm ?? null,consent:data.consent,request_hash:requestHash});
  if(error) throw new Error('We could not save your message. Please try again.');
  return {saved:true, emailed:false};
 });
