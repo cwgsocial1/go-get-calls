@@ -84,11 +84,11 @@ export function Mockup({
           ) : type === "reviews" ? (
             <>
               <div className="flex items-center gap-4 py-3">
-                <span className="text-4xl font-bold">4.9</span>
+                <span className="text-4xl font-bold">—</span>
                 <span className="text-success">
                   ★★★★★
                   <br />
-                  <small className="text-muted-foreground">127 new reviews</small>
+                  <small className="text-muted-foreground">Sample reviews</small>
                 </span>
               </div>
               {[
@@ -116,7 +116,7 @@ export function Mockup({
             </>
           ) : type === "funnel" ? (
             <div className="funnel-preview">
-              {["1,240 visitors", "148 qualified leads", "22 booked calls"].map((t, i) => (
+              {["Sample visitors", "Sample leads", "Sample calls"].map((t, i) => (
                 <div key={t} className={`funnel-step funnel-${i}`}>
                   {t}
                   <ArrowUpRight size={12} />
@@ -129,19 +129,19 @@ export function Mockup({
                 <div>
                   <small>Total leads</small>
                   <strong>
-                    248 <span>↗ 32%</span>
+                    12 <span>sample</span>
                   </strong>
                 </div>
                 <div>
                   <small>Appointments</small>
                   <strong>
-                    86 <span>↗ 48%</span>
+                    6 <span>sample</span>
                   </strong>
                 </div>
                 <div>
                   <small>Response time</small>
                   <strong>
-                    28s <span>↓ 94%</span>
+                    — <span>sample</span>
                   </strong>
                 </div>
               </div>
@@ -152,7 +152,7 @@ export function Mockup({
                       <span className={i === 2 ? "text-success" : "text-primary"}>●</span> {s}{" "}
                       <span className="ml-auto">{[12, 8, 6][i]}</span>
                     </div>
-                    {["Alex Morgan", "Jordan Taylor"].map((n, j) => (
+                    {["Sample lead A", "Sample lead B"].map((n, j) => (
                       <div className="lead-preview" key={n}>
                         <span className="lead-avatar">{n.slice(0, 1)}</span>
                         <span>
