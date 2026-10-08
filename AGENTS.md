@@ -12,6 +12,10 @@
 ## Website architecture
 - Keep the marketing experience at `/` with hash navigation because the approved brief explicitly requires one scrolling page.
 - Keep reusable website content, controls and illustrative automation mockups in `src/components/automations` so section content and repeated booking links stay consistent.
-- Contact submissions validate in the browser and open a prefilled email; do not claim server delivery without a connected email service.
-- Keep unspecified external destinations and legal documents behind labeled placeholder dialogs instead of inventing URLs or legal promises.
+- Contact and pre-call submissions use validated, rate-limited server functions and private inquiry storage; never claim email notification without a verified sender and tested send.
+- Missing media, proof, terms and social destinations stay hidden through optional siteConfig; legal pages state only supplied scope and actual processing, without invented promises.
 - Define website visual roles in the global semantic token system; feature code consumes tokens rather than raw colors.
+
+- Use native TanStack route heads and static prerender discovery for public pages; keep the existing router and Worker-compatible server runtime.
+- Keep content, FAQs and structured data in browser-safe shared modules so static pages contain complete, consistent text.
+- Load optional analytics only after explicit consent; consent preferences alone may use browser storage.

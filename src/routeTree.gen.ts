@@ -17,8 +17,10 @@ import { Route as CoachAutomationRouteImport } from './routes/coach-automation'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GhlCrmSetupRouteImport } from './routes/ghl-crm-setup'
 import { Route as HomeServicesAutomationRouteImport } from './routes/home-services-automation'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RealEstateAutomationRouteImport } from './routes/real-estate-automation'
 import { Route as ResultsRouteImport } from './routes/results'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogFiveRealEstateFollowUpMessagesRouteImport } from './routes/blog.five-real-estate-follow-up-messages'
 import { Route as BlogHowFastToRespondToANewLeadRouteImport } from './routes/blog.how-fast-to-respond-to-a-new-lead'
@@ -64,6 +66,11 @@ const HomeServicesAutomationRoute = HomeServicesAutomationRouteImport.update({
   path: '/home-services-automation',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RealEstateAutomationRoute = RealEstateAutomationRouteImport.update({
   id: '/real-estate-automation',
   path: '/real-estate-automation',
@@ -72,6 +79,11 @@ const RealEstateAutomationRoute = RealEstateAutomationRouteImport.update({
 const ResultsRoute = ResultsRouteImport.update({
   id: '/results',
   path: '/results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -107,8 +119,10 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/ghl-crm-setup': typeof GhlCrmSetupRoute
   '/home-services-automation': typeof HomeServicesAutomationRoute
+  '/privacy': typeof PrivacyRoute
   '/real-estate-automation': typeof RealEstateAutomationRoute
   '/results': typeof ResultsRoute
+  '/terms': typeof TermsRoute
   '/blog/five-real-estate-follow-up-messages': typeof BlogFiveRealEstateFollowUpMessagesRoute
   '/blog/how-fast-to-respond-to-a-new-lead': typeof BlogHowFastToRespondToANewLeadRoute
   '/blog/spreadsheets-to-gohighlevel-checklist': typeof BlogSpreadsheetsToGohighlevelChecklistRoute
@@ -123,8 +137,10 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/ghl-crm-setup': typeof GhlCrmSetupRoute
   '/home-services-automation': typeof HomeServicesAutomationRoute
+  '/privacy': typeof PrivacyRoute
   '/real-estate-automation': typeof RealEstateAutomationRoute
   '/results': typeof ResultsRoute
+  '/terms': typeof TermsRoute
   '/blog/five-real-estate-follow-up-messages': typeof BlogFiveRealEstateFollowUpMessagesRoute
   '/blog/how-fast-to-respond-to-a-new-lead': typeof BlogHowFastToRespondToANewLeadRoute
   '/blog/spreadsheets-to-gohighlevel-checklist': typeof BlogSpreadsheetsToGohighlevelChecklistRoute
@@ -140,8 +156,10 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/ghl-crm-setup': typeof GhlCrmSetupRoute
   '/home-services-automation': typeof HomeServicesAutomationRoute
+  '/privacy': typeof PrivacyRoute
   '/real-estate-automation': typeof RealEstateAutomationRoute
   '/results': typeof ResultsRoute
+  '/terms': typeof TermsRoute
   '/blog/five-real-estate-follow-up-messages': typeof BlogFiveRealEstateFollowUpMessagesRoute
   '/blog/how-fast-to-respond-to-a-new-lead': typeof BlogHowFastToRespondToANewLeadRoute
   '/blog/spreadsheets-to-gohighlevel-checklist': typeof BlogSpreadsheetsToGohighlevelChecklistRoute
@@ -158,8 +176,10 @@ export interface FileRouteTypes {
     | '/faq'
     | '/ghl-crm-setup'
     | '/home-services-automation'
+    | '/privacy'
     | '/real-estate-automation'
     | '/results'
+    | '/terms'
     | '/blog/five-real-estate-follow-up-messages'
     | '/blog/how-fast-to-respond-to-a-new-lead'
     | '/blog/spreadsheets-to-gohighlevel-checklist'
@@ -174,8 +194,10 @@ export interface FileRouteTypes {
     | '/faq'
     | '/ghl-crm-setup'
     | '/home-services-automation'
+    | '/privacy'
     | '/real-estate-automation'
     | '/results'
+    | '/terms'
     | '/blog/five-real-estate-follow-up-messages'
     | '/blog/how-fast-to-respond-to-a-new-lead'
     | '/blog/spreadsheets-to-gohighlevel-checklist'
@@ -190,8 +212,10 @@ export interface FileRouteTypes {
     | '/faq'
     | '/ghl-crm-setup'
     | '/home-services-automation'
+    | '/privacy'
     | '/real-estate-automation'
     | '/results'
+    | '/terms'
     | '/blog/five-real-estate-follow-up-messages'
     | '/blog/how-fast-to-respond-to-a-new-lead'
     | '/blog/spreadsheets-to-gohighlevel-checklist'
@@ -207,8 +231,10 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   GhlCrmSetupRoute: typeof GhlCrmSetupRoute
   HomeServicesAutomationRoute: typeof HomeServicesAutomationRoute
+  PrivacyRoute: typeof PrivacyRoute
   RealEstateAutomationRoute: typeof RealEstateAutomationRoute
   ResultsRoute: typeof ResultsRoute
+  TermsRoute: typeof TermsRoute
   BlogFiveRealEstateFollowUpMessagesRoute: typeof BlogFiveRealEstateFollowUpMessagesRoute
   BlogHowFastToRespondToANewLeadRoute: typeof BlogHowFastToRespondToANewLeadRoute
   BlogSpreadsheetsToGohighlevelChecklistRoute: typeof BlogSpreadsheetsToGohighlevelChecklistRoute
@@ -273,6 +299,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HomeServicesAutomationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/real-estate-automation': {
       id: '/real-estate-automation'
       path: '/real-estate-automation'
@@ -285,6 +318,13 @@ declare module '@tanstack/react-router' {
       path: '/results'
       fullPath: '/results'
       preLoaderRoute: typeof ResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -327,8 +367,10 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   GhlCrmSetupRoute: GhlCrmSetupRoute,
   HomeServicesAutomationRoute: HomeServicesAutomationRoute,
+  PrivacyRoute: PrivacyRoute,
   RealEstateAutomationRoute: RealEstateAutomationRoute,
   ResultsRoute: ResultsRoute,
+  TermsRoute: TermsRoute,
   BlogFiveRealEstateFollowUpMessagesRoute:
     BlogFiveRealEstateFollowUpMessagesRoute,
   BlogHowFastToRespondToANewLeadRoute: BlogHowFastToRespondToANewLeadRoute,
