@@ -40,6 +40,8 @@ import { Mockup } from "./mockup";
 import { siteConfig, business } from "@/config/siteConfig";
 import { FounderIntro, FounderVideo, TeamSection, Credibility, Proof, Fit, ClearTerms } from "./trust";
 import { InquiryForm } from "./inquiry-form";
+import { StructuredData } from "./structured-data";
+const extraLinks = [["/real-estate-automation","Real estate"],["/home-services-automation","Home services"],["/coach-automation","Coaches"],["/ghl-crm-setup","CRM setup"],["/about","About"],["/faq","FAQ"],["/blog","Blog"],["/book","Book a call"],["/results","Proof"]];
 import { trackEvent } from "@/lib/tracking";
 
 export function Header() {
@@ -285,7 +287,7 @@ function IndustryTabs() {
               </ul>
               <Blueprint className="industry-blueprint">Get My Custom {i.name} Blueprint</Blueprint>
             </div>
-            <Mockup
+            <div><Mockup
               type={
                 i.name === "Real Estate"
                   ? "pipeline"
@@ -293,7 +295,7 @@ function IndustryTabs() {
                     ? "calendar"
                     : "funnel"
               }
-            />
+            /><p className="mockup-caption">Example dashboard. Sample data.</p></div>
           </TabsContent>
         ))}
       </Tabs>
@@ -351,16 +353,7 @@ function Pricing() {
       <div className="faq-wrap">
         <div className="eyebrow justify-center">A LITTLE MORE CLARITY</div>
         <h3 className="mb-6 text-center text-2xl font-bold">Frequently asked questions</h3>
-        <Accordion type="single" collapsible>
-          {faqs.map(([q, a], i) => (
-            <AccordionItem key={q} value={`faq-${i}`}>
-              <AccordionTrigger className="py-5 text-base">{q}</AccordionTrigger>
-              <AccordionContent className="leading-relaxed text-muted-foreground">
-                {a}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <div className="content-faq">{faqs.map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div>
       </div>
     </Section>
   );
@@ -429,6 +422,7 @@ export function Footer() {
             <div className="social-links">{Object.entries(siteConfig.socialProfiles??{}).filter(([,url])=>url).map(([name,url])=><a key={name} href={url} target="_blank" rel="noopener noreferrer">{name}</a>)}</div>
           </div>
         </div>
+        <nav className="service-pages" aria-label="Service and company pages">{extraLinks.map(([path,label])=><a href={path} key={path}>{label}</a>)}</nav>
         <p className="serving">
           <Globe2 size={14} />
           Serving businesses across the United States, Canada & Europe
@@ -463,6 +457,7 @@ export function Website() {
   return (
     <>
       <Header />
+      <StructuredData faq={faqs as [string,string][]}/>
       <main>
         <Hero />
         <FounderIntro />

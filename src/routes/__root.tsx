@@ -10,6 +10,8 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { CookieConsent } from "@/components/automations/consent";
+import { siteConfig } from "@/config/siteConfig";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -78,6 +80,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "theme-color", content: "#0a0f2c" },
+      ...(siteConfig.searchConsoleVerification ? [{name:"google-site-verification", content:siteConfig.searchConsoleVerification}] : []),
+      ...(siteConfig.bingVerification ? [{name:"msvalidate.01",content:siteConfig.bingVerification}] : []),
       { name: "author", content: "CyberWorld Automations" },
       { property: "og:site_name", content: "CyberWorld Automations" },
       { property: "og:type", content: "website" },
@@ -89,12 +94,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
-      },
+      {rel:"apple-touch-icon",href:"/apple-touch-icon.png"},
+      {rel:"manifest",href:"/site.webmanifest"},
+      {rel:"preload",href:"/fonts/plus-jakarta-sans-v12-latin-regular.woff2",as:"font",type:"font/woff2",crossOrigin:"anonymous"},
     ],
   }),
   shellComponent: RootShell,
@@ -124,6 +126,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <CookieConsent />
     </QueryClientProvider>
   );
 }
