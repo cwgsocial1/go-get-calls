@@ -2,35 +2,11 @@
 @source "../src";
 @import "tw-animate-css";
 
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/plus-jakarta-sans-v12-latin-regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/plus-jakarta-sans-v12-latin-500.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/plus-jakarta-sans-v12-latin-600.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Plus Jakarta Sans';
-  src: url('/fonts/plus-jakarta-sans-v12-latin-700.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
+@font-face {font-family:'Plus Jakarta Sans';src:url('/fonts/jakarta-400.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap;}
+@font-face {font-family:'Plus Jakarta Sans';src:url('/fonts/jakarta-500.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap;}
+@font-face {font-family:'Plus Jakarta Sans';src:url('/fonts/jakarta-600.ttf') format('truetype');font-weight:600;font-style:normal;font-display:swap;}
+@font-face {font-family:'Plus Jakarta Sans';src:url('/fonts/jakarta-700.ttf') format('truetype');font-weight:700;font-style:normal;font-display:swap;}
+@font-face {font-family:'Plus Jakarta Sans';src:url('/fonts/jakarta-800.ttf') format('truetype');font-weight:800;font-style:normal;font-display:swap;}
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -1702,3 +1678,7 @@ h3 {
  .calendar-embed {height:960px}
  .stats-grid strong {font-size:30px}
 }
+
+.contact-form input[name="website"] {display:none!important}
+.site-header .mobile-menu .blueprint {color:var(--primary-foreground);min-height:48px}
+.hero-eyebrow {border:0;background:none;padding:0;letter-spacing:0}
