@@ -1,11 +1,12 @@
 import { ArrowUpRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { business } from "@/config/siteConfig";
 import { trackEvent } from "@/lib/tracking";
 import type { ReactNode } from "react";
 
-export const BOOKING = "https://calendly.com/cwgsocial1/30min?month=2026-10";
-export const WHATSAPP = "https://wa.me/14703178834";
-export const EMAIL = "mailto:ceo@cyberworldgroups.com";
+export const BOOKING = business.booking;
+export const WHATSAPP = business.whatsapp;
+export const EMAIL = `mailto:${business.email}`;
 export const navLinks = [
   ["Home", "home"],
   ["Industries", "industries"],
