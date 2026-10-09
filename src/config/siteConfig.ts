@@ -8,7 +8,18 @@ export interface SiteConfig {
  socialProfiles?: Record<string,string>; businessAddress?: string; ga4Id?: string; gtmId?: string; searchConsoleVerification?: string; bingVerification?: string;
  realCaseStudies?: CaseStudy[]; realTestimonials?: Testimonial[];
 }
-export const siteConfig: SiteConfig = { isAIVideo: true, teamPhotos: {}, linkedinUrls: {}, terms: {}, socialProfiles: {}, realCaseStudies: [], realTestimonials: [] };
+export const siteConfig: SiteConfig = {
+ isAIVideo:true,
+ founderPhoto:'', teamPhotos:{'Ahmed Akash':'','Sammy Ogundele':'','Heather Fulmer':''},
+ videoUrl:'', videoThumbnail:'', videoCaptions:'',
+ linkedinUrls:{'Ayodele Ezekiel':'','Ahmed Akash':'','Sammy Ogundele':'','Heather Fulmer':'',company:''},
+ certificateImage:'', certificateVerifyUrl:'',
+ ownSystemStats:{period:'',leads:'',firstResponseTime:'',appointments:''},
+ terms:{dataOwnership:'',contractLength:'',paymentTerms:'',supportAfterBuild:'',refundPolicy:''},
+ socialProfiles:{TikTok:'',LinkedIn:'',Instagram:'',YouTube:''},businessAddress:'',
+ ga4Id:'',gtmId:'',searchConsoleVerification:'',bingVerification:'',
+ realCaseStudies:[],realTestimonials:[],
+};
 export const business = { name: 'CyberWorld Automations', parent: 'CyberWorld Groups', url: 'https://automation.cyberworldgroups.com', parentUrl: 'https://cyberworldgroups.com', email: 'ceo@cyberworldgroups.com', phone: '+1 (470) 317-8834', telephone: '+14703178834', booking: 'https://calendly.com/cwgsocial1/30min?month=2026-10', whatsapp: 'https://wa.me/14703178834' };
 export const team = [
  {name:'Ayodele Ezekiel',role:'Founder',description:'Leads strategy and designs your automation blueprint.'},
