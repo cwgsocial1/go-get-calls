@@ -196,7 +196,8 @@ export function Mockup({
                           <Check size={9} />
                         </span>
                       </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 ))}
               </div>
