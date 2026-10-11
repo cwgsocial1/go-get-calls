@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   BarChart3,
   Check,
@@ -9,6 +10,31 @@ import {
   Star,
   ArrowUpRight,
 } from "lucide-react";
+const SAMPLE_LEADS = [
+  "Sample lead A",
+  "Sample lead B",
+  "Sample lead C",
+  "Sample lead D",
+  "Sample lead E",
+];
+
+/** Live-demo ticker: makes the sample dashboard update in real time. */
+function useLiveDemo(active: boolean) {
+  const [tick, setTick] = useState(0);
+  useEffect(() => {
+    if (!active) return;
+    const id = window.setInterval(() => setTick((t) => t + 1), 3200);
+    return () => window.clearInterval(id);
+  }, [active]);
+  const leads = 12 + tick;
+  const booked = 6 + Math.floor(tick / 2);
+  const rotation = [
+    SAMPLE_LEADS[tick % SAMPLE_LEADS.length],
+    SAMPLE_LEADS[(tick + 1) % SAMPLE_LEADS.length],
+  ];
+  return { tick, leads, booked, rotation };
+}
+
 export function Mockup({
   type = "pipeline",
   compact = false,
@@ -16,6 +42,7 @@ export function Mockup({
   type?: string;
   compact?: boolean;
 }) {
+  const live = useLiveDemo(type === "pipeline" || type === "calendar");
   return (
     <div
       className={`dashboard-mockup ${compact ? "compact" : ""}`}
@@ -39,7 +66,7 @@ export function Mockup({
                   ? "Workflows"
                   : "Sales pipeline"}
         </span>
-        <span className="text-success">● Live</span>
+        <span className="text-success live-dot">● Live demo</span>
       </div>
       <div className="mockup-inner">
         <aside>
@@ -107,7 +134,7 @@ export function Mockup({
             <>
               <div className="calendar-preview">
                 {Array.from({ length: 21 }, (_, i) => (
-                  <span className={i % 4 === 0 ? "booked" : ""} key={i}>
+                  <span className={(i + live.tick) % 4 === 0 ? "booked" : ""} key={i}>
                     {i + 1}
                   </span>
                 ))}
@@ -129,13 +156,13 @@ export function Mockup({
                 <div>
                   <small>Total leads</small>
                   <strong>
-                    12 <span>sample</span>
+                    {live.leads} <span>sample</span>
                   </strong>
                 </div>
                 <div>
                   <small>Appointments</small>
                   <strong>
-                    6 <span>sample</span>
+                    {live.booked} <span>sample</span>
                   </strong>
                 </div>
                 <div>
@@ -150,9 +177,13 @@ export function Mockup({
                   <div key={s}>
                     <div className="pipeline-label">
                       <span className={i === 2 ? "text-success" : "text-primary"}>●</span> {s}{" "}
-                      <span className="ml-auto">{[12, 8, 6][i]}</span>
+                      <span className="ml-auto">
+                        {[live.leads, 8 + Math.floor(live.tick / 3), live.booked][i]}
+                      </span>
                     </div>
-                    {["Sample lead A", "Sample lead B"].map((n, j) => (
+                    {live.rotation.map((lead, j) => {
+                      const n = lead ?? "Sample lead";
+                      return (
                       <div className="lead-preview" key={n}>
                         <span className="lead-avatar">{n.slice(0, 1)}</span>
                         <span>
@@ -165,7 +196,8 @@ export function Mockup({
                           <Check size={9} />
                         </span>
                       </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 ))}
               </div>

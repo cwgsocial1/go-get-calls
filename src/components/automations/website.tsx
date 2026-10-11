@@ -223,7 +223,7 @@ function Results() {
             key={p.title}
           >
             <div className="project-preview">
-              <Mockup type={p.type} compact /><p className="mockup-caption">Example dashboard. Sample data.</p>
+              <Mockup type={p.type} compact /><p className="mockup-caption">Live demo · Sample data.</p>
             </div>
             <div className="project-body">
               <span className="industry-tag">
@@ -295,7 +295,7 @@ function IndustryTabs() {
                     ? "calendar"
                     : "funnel"
               }
-            /><p className="mockup-caption">Example dashboard. Sample data.</p></div>
+            /><p className="mockup-caption">Live demo · Sample data.</p></div>
           </TabsContent>
         ))}
       </Tabs>
