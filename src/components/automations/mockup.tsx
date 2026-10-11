@@ -177,9 +177,11 @@ export function Mockup({
                   <div key={s}>
                     <div className="pipeline-label">
                       <span className={i === 2 ? "text-success" : "text-primary"}>●</span> {s}{" "}
-                      <span className="ml-auto">{[12, 8, 6][i]}</span>
+                      <span className="ml-auto">
+                        {[live.leads, 8 + Math.floor(live.tick / 3), live.booked][i]}
+                      </span>
                     </div>
-                    {["Sample lead A", "Sample lead B"].map((n, j) => (
+                    {live.rotation.map((n, j) => (
                       <div className="lead-preview" key={n}>
                         <span className="lead-avatar">{n.slice(0, 1)}</span>
                         <span>
