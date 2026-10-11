@@ -10,6 +10,31 @@ import {
   Star,
   ArrowUpRight,
 } from "lucide-react";
+const SAMPLE_LEADS = [
+  "Sample lead A",
+  "Sample lead B",
+  "Sample lead C",
+  "Sample lead D",
+  "Sample lead E",
+];
+
+/** Live-demo ticker: makes the sample dashboard update in real time. */
+function useLiveDemo(active: boolean) {
+  const [tick, setTick] = useState(0);
+  useEffect(() => {
+    if (!active) return;
+    const id = window.setInterval(() => setTick((t) => t + 1), 3200);
+    return () => window.clearInterval(id);
+  }, [active]);
+  const leads = 12 + tick;
+  const booked = 6 + Math.floor(tick / 2);
+  const rotation = [
+    SAMPLE_LEADS[tick % SAMPLE_LEADS.length],
+    SAMPLE_LEADS[(tick + 1) % SAMPLE_LEADS.length],
+  ];
+  return { tick, leads, booked, rotation };
+}
+
 export function Mockup({
   type = "pipeline",
   compact = false,
@@ -17,6 +42,7 @@ export function Mockup({
   type?: string;
   compact?: boolean;
 }) {
+  const live = useLiveDemo(type === "pipeline" || type === "calendar");
   return (
     <div
       className={`dashboard-mockup ${compact ? "compact" : ""}`}
