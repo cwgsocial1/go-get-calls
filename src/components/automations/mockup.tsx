@@ -66,7 +66,7 @@ export function Mockup({
                   ? "Workflows"
                   : "Sales pipeline"}
         </span>
-        <span className="text-success">● Live</span>
+        <span className="text-success live-dot">● Live demo</span>
       </div>
       <div className="mockup-inner">
         <aside>
@@ -134,7 +134,7 @@ export function Mockup({
             <>
               <div className="calendar-preview">
                 {Array.from({ length: 21 }, (_, i) => (
-                  <span className={i % 4 === 0 ? "booked" : ""} key={i}>
+                  <span className={(i + live.tick) % 4 === 0 ? "booked" : ""} key={i}>
                     {i + 1}
                   </span>
                 ))}
