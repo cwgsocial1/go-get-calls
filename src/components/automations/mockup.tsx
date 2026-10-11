@@ -181,7 +181,9 @@ export function Mockup({
                         {[live.leads, 8 + Math.floor(live.tick / 3), live.booked][i]}
                       </span>
                     </div>
-                    {live.rotation.map((n, j) => (
+                    {live.rotation.map((lead, j) => {
+                      const n = lead ?? "Sample lead";
+                      return (
                       <div className="lead-preview" key={n}>
                         <span className="lead-avatar">{n.slice(0, 1)}</span>
                         <span>
