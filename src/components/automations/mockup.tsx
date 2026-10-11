@@ -156,13 +156,13 @@ export function Mockup({
                 <div>
                   <small>Total leads</small>
                   <strong>
-                    12 <span>sample</span>
+                    {live.leads} <span>sample</span>
                   </strong>
                 </div>
                 <div>
                   <small>Appointments</small>
                   <strong>
-                    6 <span>sample</span>
+                    {live.booked} <span>sample</span>
                   </strong>
                 </div>
                 <div>
